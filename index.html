@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module I · Culture — UCSP</title>
+<meta name="description" content="Module I: Culture — ethnocentrism, cultural relativism, and why culture matters. A UCSP learning module.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,300..900;1,9..40,300..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --pink:      oklch(0.89 0.048 350);   /* #FFD3E0 */
+  --peach:     oklch(0.82 0.10 55);     /* #FFB583 */
+  --soft:      oklch(0.955 0.02 45);    /* #FFEFE9 */
+  --butter:    oklch(0.88 0.10 90);     /* derived yellow */
+  --mustard:   oklch(0.85 0.10 85);     /* #F3CD88 */
+  --cream:     oklch(0.965 0.02 90);    /* #FBF6EC */
+  --brown:     oklch(0.37 0.03 50);     /* #54453F warm text */
+  --coral:     oklch(0.62 0.17 40);     /* #E85A3C accent  */
+  --teal:      oklch(0.36 0.05 190);    /* #1A4A48 deep accent */
+  --rose:      oklch(0.80 0.09 10);     /* deep rose accent */
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  --sans:'DM Sans',-apple-system,'Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --shadow: 0 10px 24px -12px rgb(84 69 63 / .35);
+  --rad: 20px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--soft);
+  color:var(--brown);
+  font-size:17px;
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--coral);color:var(--cream)}
+img,svg{display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:4px}
+
+/* grain overlay */
+body::after{
+  content:"";position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.9'/%3E%3C/svg%3E");
+}
+
+/* ============ NAV ============ */
+nav{
+  position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;
+  display:flex;align-items:center;gap:4px;flex-wrap:wrap;justify-content:center;
+  background:var(--cream);border:2px solid var(--brown);border-radius:999px;
+  padding:6px 10px;box-shadow:var(--shadow);max-width:94vw;
+}
+nav .brand{font-family:var(--mono);font-weight:600;font-size:12px;letter-spacing:.08em;padding:6px 12px;white-space:nowrap}
+nav a.nl{
+  font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-decoration:none;
+  padding:7px 12px;border-radius:999px;transition:background .18s ease,color .18s ease;white-space:nowrap;
+}
+nav a.nl:hover{background:var(--pink)}
+nav a.nl.on{background:var(--brown);color:var(--cream)}
+
+/* ============ STICKER PRIMITIVES ============ */
+.sticker{
+  background:var(--cream);border:2.5px solid var(--brown);border-radius:var(--rad);
+  box-shadow:var(--shadow);position:relative;
+}
+.sticker::before{
+  content:"";position:absolute;inset:7px;border:1.5px dashed var(--brown);
+  border-radius:calc(var(--rad) - 7px);opacity:.45;pointer-events:none;
+}
+.tag{
+  display:inline-block;font-family:var(--mono);font-size:12px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  background:var(--mustard);border:2px solid var(--brown);border-radius:999px;
+  padding:6px 16px;box-shadow:3px 3px 0 var(--brown);
+}
+.tag.pink{background:var(--pink)} .tag.peach{background:var(--peach)} .tag.teal{background:var(--teal);color:var(--cream)}
+
+/* wavy hand-drawn underline */
+.u-wavy{
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='8' viewBox='0 0 40 8'%3E%3Cpath d='M0 5 Q5 1 10 5 T20 5 T30 5 T40 5' fill='none' stroke='%23E85A3C' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") bottom left repeat-x;
+  background-size:40px 8px;padding-bottom:8px;text-decoration:none;
+}
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100dvh;position:relative;display:flex;align-items:center;justify-content:center;
+  padding:120px 20px 80px;overflow:hidden;
+  /* gingham */
+  background:
+    repeating-linear-gradient(0deg, rgb(232 90 60 / .10) 0 34px, transparent 34px 68px),
+    repeating-linear-gradient(90deg, rgb(232 90 60 / .10) 0 34px, transparent 34px 68px),
+    linear-gradient(160deg, var(--soft) 0%, var(--pink) 55%, var(--peach) 100%);
+}
+.hero-inner{position:relative;z-index:5;text-align:center;max-width:900px}
+.hero .eyebrow{margin-bottom:26px;transform:rotate(-2deg)}
+.hero h1{
+  font-family:var(--serif);font-weight:600;
+  font-size:clamp(56px,12vw,150px);line-height:.92;letter-spacing:-.02em;
+}
+.hero h1 .l1{display:block;color:var(--brown)}
+.hero h1 .l2{
+  display:block;font-style:italic;font-weight:400;
+  background:linear-gradient(100deg,var(--coral),var(--rose) 60%,var(--teal));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-sub{
+  margin:30px auto 0;max-width:56ch;font-size:clamp(16px,2.2vw,20px);
+}
+.hero .cta-row{margin-top:36px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;cursor:pointer;
+  font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  text-decoration:none;border:2.5px solid var(--brown);border-radius:999px;padding:14px 26px;
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+}
+.btn.primary{background:var(--teal);color:var(--cream);box-shadow:4px 4px 0 var(--brown)}
+.btn.ghost{background:var(--cream);color:var(--brown);box-shadow:4px 4px 0 var(--brown)}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--brown)}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--brown)}
+
+/* floating sticker shapes */
+.floaty{position:absolute;z-index:3;pointer-events:none;will-change:transform;filter:drop-shadow(0 10px 14px rgb(84 69 63 / .28))}
+.floaty svg{width:100%;height:100%}
+.f-flower1{width:150px;height:150px;top:12%;left:6%;animation:bob 7s ease-in-out infinite}
+.f-flower2{width:110px;height:110px;bottom:14%;right:8%;animation:bob 9s ease-in-out infinite reverse}
+.f-star1{width:70px;height:70px;top:20%;right:14%;animation:bob 6s ease-in-out infinite;animation-delay:-2s}
+.f-star2{width:52px;height:52px;bottom:24%;left:12%;animation:bob 8s ease-in-out infinite;animation-delay:-4s}
+.f-btn{width:84px;height:84px;bottom:10%;left:44%;animation:bob 7.5s ease-in-out infinite;animation-delay:-1s}
+@keyframes bob{0%,100%{translate:0 0;rotate:-4deg}50%{translate:0 -18px;rotate:5deg}}
+
+/* marquee */
+.marquee{
+  position:relative;z-index:6;background:var(--brown);color:var(--cream);
+  border-top:2.5px solid var(--brown);border-bottom:2.5px solid var(--brown);
+  transform:rotate(-1.2deg) scale(1.02);margin-top:-30px;overflow:hidden;padding:14px 0;
+}
+.marquee-track{display:flex;gap:0;width:max-content;animation:scrollx 28s linear infinite}
+.marquee span{
+  font-family:var(--serif);font-style:italic;font-size:clamp(16px,2.4vw,24px);
+  white-space:nowrap;padding:0 18px;letter-spacing:.02em;
+}
+.marquee b{color:var(--mustard);font-family:var(--mono);font-size:.8em;font-style:normal}
+@keyframes scrollx{to{transform:translateX(-50%)}}
+
+/* ============ SECTIONS ============ */
+section{padding:clamp(70px,10vw,130px) 20px;position:relative}
+.wrap{max-width:1100px;margin:0 auto}
+.sec-head{max-width:720px;margin-bottom:clamp(36px,5vw,64px)}
+.sec-head h2{
+  font-family:var(--serif);font-weight:600;font-size:clamp(36px,6vw,64px);
+  line-height:1.02;letter-spacing:-.015em;margin-top:20px;
+}
+.sec-head h2 em{font-style:italic;color:var(--coral)}
+.sec-head p{margin-top:18px;font-size:clamp(16px,2vw,19px);max-width:60ch}
+.kicker{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--coral)}
+
+/* reveal */
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity .6s ease-out,transform .6s ease-out}
+.js .rv.in{opacity:1;transform:none}
+.js .rv.d1{transition-delay:.08s}.js .rv.d2{transition-delay:.16s}.js .rv.d3{transition-delay:.24s}.js .rv.d4{transition-delay:.32s}
+
+/* — what is culture — */
+.def-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:26px;align-items:stretch}
+.def-card{padding:clamp(28px,4vw,48px)}
+.def-card .big{
+  font-family:var(--serif);font-size:clamp(22px,3vw,30px);line-height:1.35;font-weight:500;
+}
+.def-card .big em{color:var(--coral)}
+.def-card cite{display:block;margin-top:22px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;font-style:normal;color:var(--teal)}
+.mini-stack{display:grid;gap:26px}
+.mini-card{padding:26px 28px;transform:rotate(1deg)}
+.mini-card:nth-child(2){transform:rotate(-1.2deg)}
+.mini-card h3{font-family:var(--serif);font-size:22px;margin-bottom:8px}
+.mini-card p{font-size:15.5px}
+
+/* — elements bento — */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:22px}
+.bento .cell{padding:28px;border-radius:var(--rad)}
+.bento .cell h3{font-family:var(--serif);font-size:clamp(20px,2.4vw,26px);margin:14px 0 8px}
+.bento .cell p{font-size:15.5px}
+.bento .num{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.1em;border:2px solid currentColor;border-radius:999px;padding:4px 12px;display:inline-block}
+.c-symbols{grid-column:span 3;background:var(--pink)}
+.c-language{grid-column:span 3;background:var(--butter)}
+.c-norms{grid-column:span 2;background:var(--peach)}
+.c-values{grid-column:span 2;background:var(--cream);border:2.5px solid var(--brown)}
+.c-artifacts{grid-column:span 2;background:var(--pink)}
+.c-beliefs{grid-column:span 6;background:var(--teal);color:var(--cream)}
+.c-beliefs p{color:oklch(0.92 0.03 190)}
+
+/* — ethno vs relativism — */
+.versus{display:grid;grid-template-columns:1fr auto 1fr;gap:22px;align-items:stretch}
+.vs-card{padding:clamp(28px,3.6vw,44px)}
+.vs-card.bad{background:var(--cream)}
+.vs-card.good{background:var(--butter);transform:rotate(.6deg)}
+.vs-card h3{font-family:var(--serif);font-size:clamp(24px,3vw,34px);line-height:1.05;margin:14px 0 14px}
+.vs-card ul{list-style:none;margin-top:6px}
+.vs-card li{padding:10px 0 10px 30px;position:relative;font-size:15.5px;border-bottom:1.5px dashed rgb(84 69 63 / .25)}
+.vs-card li:last-child{border-bottom:0}
+.vs-card li::before{content:"✦";position:absolute;left:2px;color:var(--coral);font-size:14px}
+.vs-badge{align-self:center;z-index:2}
+.vs-badge span{
+  display:grid;place-items:center;width:78px;height:78px;border-radius:50%;
+  background:var(--coral);color:var(--cream);border:2.5px solid var(--brown);
+  font-family:var(--serif);font-style:italic;font-size:26px;box-shadow:4px 4px 0 var(--brown);
+  transform:rotate(-6deg);
+}
+.balance{
+  margin-top:34px;padding:clamp(26px,3.5vw,40px);text-align:center;
+  background:var(--pink);border-radius:var(--rad);
+}
+.balance p{font-family:var(--serif);font-size:clamp(19px,2.6vw,26px);line-height:1.4;font-style:italic;max-width:56ch;margin:0 auto}
+
+/* — filipino threads — */
+.threads{background:linear-gradient(180deg,var(--soft),var(--pink) 140%)}
+.thread-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.thread{
+  padding:26px;background:var(--cream);border:2.5px solid var(--brown);border-radius:var(--rad);
+  box-shadow:var(--shadow);transition:transform .2s ease;
+}
+.thread:hover{transform:translateY(-6px) rotate(-1deg)}
+.thread:nth-child(even){transform:rotate(1deg)}
+.thread:nth-child(even):hover{transform:translateY(-6px) rotate(2deg)}
+.thread h3{font-family:var(--serif);font-size:21px;margin-bottom:8px}
+.thread .word{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--coral);display:block;margin-bottom:10px}
+.thread p{font-size:14.5px}
+
+/* — why it matters — */
+.matters{background:var(--teal);color:var(--cream)}
+.matters .kicker{color:var(--mustard)}
+.matters .sec-head h2{color:var(--cream)}
+.matters .sec-head h2 em{color:var(--mustard)}
+.matters .sec-head p{color:oklch(0.9 0.03 190)}
+.matter-list{display:grid;grid-template-columns:1fr 1fr;gap:0;border:2px solid oklch(0.75 0.07 190 / .5);border-radius:var(--rad);overflow:hidden}
+.matter{padding:clamp(24px,3vw,38px);border-bottom:2px solid oklch(0.75 0.07 190 / .5)}
+.matter:nth-child(odd){border-right:2px solid oklch(0.75 0.07 190 / .5)}
+.matter:nth-last-child(-n+2){border-bottom:0}
+.matter .n{font-family:var(--mono);font-size:12px;color:var(--mustard);letter-spacing:.14em}
+.matter h3{font-family:var(--serif);font-size:clamp(20px,2.4vw,27px);margin:10px 0 8px}
+.matter p{font-size:15.5px;color:oklch(0.9 0.03 190)}
+
+/* — appreciation vs appropriation — */
+.avsa{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.avsa .panel{padding:clamp(26px,3.4vw,42px)}
+.avsa .do{background:var(--butter)}
+.avsa .dont{background:var(--peach)}
+.avsa h3{font-family:var(--serif);font-size:clamp(22px,2.8vw,30px);margin:12px 0 14px}
+.avsa ul{list-style:none}
+.avsa li{padding:9px 0 9px 32px;position:relative;font-size:15.5px}
+.avsa .do li::before{content:"✓";position:absolute;left:4px;font-weight:700;color:var(--teal)}
+.avsa .dont li::before{content:"✕";position:absolute;left:4px;font-weight:700;color:var(--coral)}
+
+/* — glossary flip cards — */
+.glossary .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.flip{perspective:1200px;height:250px;cursor:pointer;background:none;border:0;padding:0;text-align:left;font:inherit;color:inherit}
+.flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.flip[aria-pressed="true"] .flip-inner{transform:rotateY(180deg)}
+.face{
+  position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  border:2.5px solid var(--brown);border-radius:var(--rad);padding:26px;
+  display:flex;flex-direction:column;justify-content:center;gap:10px;box-shadow:var(--shadow);
+}
+.face.front{background:var(--cream)}
+.flip:nth-child(3n+2) .face.front{background:var(--pink)}
+.flip:nth-child(3n) .face.front{background:var(--butter)}
+.face.back{background:var(--brown);color:var(--cream);transform:rotateY(180deg)}
+.face h3{font-family:var(--serif);font-size:23px}
+.face .hint{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--coral)}
+.face.back p{font-size:14.5px;line-height:1.55}
+.face.back .hint{color:var(--mustard)}
+.flip:hover .flip-inner{transform:rotateY(8deg)}
+.flip[aria-pressed="true"]:hover .flip-inner{transform:rotateY(172deg)}
+
+/* — footer — */
+footer{
+  background:var(--brown);color:var(--cream);padding:60px 20px 40px;text-align:center;
+}
+footer .foot-title{font-family:var(--serif);font-style:italic;font-size:clamp(26px,4vw,40px);margin-bottom:14px}
+footer p{font-size:14.5px;color:oklch(0.85 0.02 60);max-width:60ch;margin:0 auto 26px}
+footer .links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+footer .links a{
+  font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-decoration:none;
+  border:2px solid var(--cream);border-radius:999px;padding:10px 20px;transition:all .18s ease;
+}
+footer .links a:hover{background:var(--cream);color:var(--brown)}
+footer .tiny{margin-top:30px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:oklch(0.7 0.02 60)}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:900px){
+  .def-grid,.versus,.avsa{grid-template-columns:1fr}
+  .vs-badge{justify-self:center;transform:rotate(90deg)}
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .bento .cell{grid-column:span 2 !important}
+  .thread-grid{grid-template-columns:1fr 1fr}
+  .glossary .grid{grid-template-columns:1fr 1fr}
+  .matter-list{grid-template-columns:1fr}
+  .matter:nth-child(odd){border-right:0}
+  .matter:nth-last-child(-n+2){border-bottom:2px solid oklch(0.75 0.07 190 / .5)}
+  .matter:last-child{border-bottom:0}
+}
+@media(max-width:600px){
+  body{font-size:16px}
+  nav{top:8px;gap:2px;padding:5px 8px}
+  nav a.nl{padding:6px 9px;font-size:11px}
+  .thread-grid,.glossary .grid{grid-template-columns:1fr}
+  .f-flower1{width:90px;height:90px}.f-flower2{width:70px;height:70px}
+  .f-btn{display:none}
+  .marquee{transform:rotate(0) scale(1);margin-top:-10px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s !important;transition-duration:.001s !important;scroll-behavior:auto}
+  .js .rv{opacity:1;transform:none}
+}
+</style>
+<base target="_blank">
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+
+<nav aria-label="Module navigation">
+  <span class="brand">UCSP · MIL</span>
+  <a class="nl on" href="module-1-culture.html" aria-current="page">I · Culture</a>
+  <a class="nl" href="module-2-politics.html">II · Politics</a>
+  <a class="nl" href="module-3-digital-literacy.html">III · Digital Literacy</a>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="floaty f-flower1" data-depth="30" aria-hidden="true">
+    <svg viewBox="0 0 100 100"><g><ellipse cx="50" cy="24" rx="15" ry="20" fill="#E85A3C" stroke="#54453F" stroke-width="2.5"/><ellipse cx="50" cy="76" rx="15" ry="20" fill="#E85A3C" stroke="#54453F" stroke-width="2.5"/><ellipse cx="24" cy="50" rx="20" ry="15" fill="#E85A3C" stroke="#54453F" stroke-width="2.5"/><ellipse cx="76" cy="50" rx="20" ry="15" fill="#E85A3C" stroke="#54453F" stroke-width="2.5"/><ellipse cx="32" cy="32" rx="13" ry="16" fill="#F3CD88" stroke="#54453F" stroke-width="2.5" transform="rotate(-45 32 32)"/><ellipse cx="68" cy="68" rx="13" ry="16" fill="#F3CD88" stroke="#54453F" stroke-width="2.5" transform="rotate(-45 68 68)"/><ellipse cx="68" cy="32" rx="13" ry="16" fill="#F3CD88" stroke="#54453F" stroke-width="2.5" transform="rotate(45 68 32)"/><ellipse cx="32" cy="68" rx="13" ry="16" fill="#F3CD88" stroke="#54453F" stroke-width="2.5" transform="rotate(45 32 68)"/><circle cx="50" cy="50" r="14" fill="#54453F"/><circle cx="50" cy="50" r="7" fill="#FFD3E0"/></g></svg>
+  </div>
+  <div class="floaty f-flower2" data-depth="-22" aria-hidden="true">
+    <svg viewBox="0 0 100 100"><g><ellipse cx="50" cy="24" rx="14" ry="19" fill="#BAAAD7" stroke="#54453F" stroke-width="2.5"/><ellipse cx="50" cy="76" rx="14" ry="19" fill="#BAAAD7" stroke="#54453F" stroke-width="2.5"/><ellipse cx="24" cy="50" rx="19" ry="14" fill="#BAAAD7" stroke="#54453F" stroke-width="2.5"/><ellipse cx="76" cy="50" rx="19" ry="14" fill="#BAAAD7" stroke="#54453F" stroke-width="2.5"/><circle cx="50" cy="50" r="13" fill="#54453F"/><circle cx="50" cy="50" r="6" fill="#F3CD88"/></g></svg>
+  </div>
+  <div class="floaty f-star1" data-depth="45" aria-hidden="true">
+    <svg viewBox="0 0 100 100"><path d="M50 6 L61 38 L95 38 L67 58 L77 92 L50 71 L23 92 L33 58 L5 38 L39 38 Z" fill="#F3CD88" stroke="#54453F" stroke-width="3" stroke-linejoin="round"/></svg>
+  </div>
+  <div class="floaty f-star2" data-depth="-38" aria-hidden="true">
+    <svg viewBox="0 0 100 100"><path d="M50 6 L61 38 L95 38 L67 58 L77 92 L50 71 L23 92 L33 58 L5 38 L39 38 Z" fill="#E85A3C" stroke="#54453F" stroke-width="3" stroke-linejoin="round"/></svg>
+  </div>
+  <div class="floaty f-btn" data-depth="18" aria-hidden="true">
+    <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="#E85A3C" stroke="#54453F" stroke-width="3"/><circle cx="50" cy="50" r="30" fill="none" stroke="#FFD3E0" stroke-width="2" stroke-dasharray="4 5"/><circle cx="40" cy="42" r="5" fill="#54453F"/><circle cx="60" cy="42" r="5" fill="#54453F"/><circle cx="40" cy="60" r="5" fill="#54453F"/><circle cx="60" cy="60" r="5" fill="#54453F"/></svg>
+  </div>
+
+  <div class="hero-inner">
+    <div class="eyebrow"><span class="tag pink">Understanding Culture, Society &amp; Politics</span></div>
+    <h1><span class="l1">MODULE I.</span><span class="l2">Culture</span></h1>
+    <p class="hero-sub">The invisible thread that weaves us together — our languages, rituals, values, and everyday ways of being. Learn to see your own culture clearly, and to meet every other culture with <span class="u-wavy">curiosity instead of judgment</span>.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#what">Start Learning ↓</a>
+      <a class="btn ghost" href="#glossary">Key Terms</a>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack">
+    <span>Ethnocentrism <b>✦</b> Cultural Relativism <b>✦</b> Bayanihan <b>✦</b> Heritage <b>✦</b> Norms &amp; Values <b>✦</b> Identity <b>✦</b> Diversity <b>✦</b> Enculturation <b>✦</b>&nbsp;</span>
+  </div>
+</div>
+
+<!-- ================= WHAT IS CULTURE ================= -->
+<section id="what">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">01 — The Big Idea</span>
+      <h2>So… what exactly <em>is</em> culture?</h2>
+      <p>Before we can talk about respecting culture, we have to know what we're looking at. Spoiler: it's way more than festivals and food.</p>
+    </div>
+    <div class="def-grid">
+      <div class="sticker def-card rv d1">
+        <p class="big">Culture is the <em>whole way of life</em> of a group of people — everything they <em>learn, share, and pass down</em>: language, beliefs, values, norms, rituals, art, technology, and the unwritten rules of how to be a person in that society.</p>
+        <cite>— adapted from UCSP, DepEd Senior High School Curriculum</cite>
+      </div>
+      <div class="mini-stack">
+        <div class="sticker mini-card rv d2">
+          <h3>🧵 Material Culture</h3>
+          <p>The physical things a group makes and uses — the <em>bahay kubo</em>, jeepneys, weaves like <em>inató</em> and <em>piña</em> cloth, tools, food, clothing.</p>
+        </div>
+        <div class="sticker mini-card rv d3">
+          <h3>💭 Non-material Culture</h3>
+          <p>The invisible stuff — beliefs, values, norms, symbols, language, and ideas. Harder to see, but it shapes everything.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ELEMENTS ================= -->
+<section id="elements" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">02 — The Building Blocks</span>
+      <h2>The elements of <em>culture</em></h2>
+      <p>Every culture on Earth is built from the same basic ingredients — combined in endlessly different ways.</p>
+    </div>
+    <div class="bento">
+      <div class="cell c-symbols sticker rv d1" style="border:0">
+        <span class="num">ELEMENT 01</span>
+        <h3>Symbols</h3>
+        <p>Anything that carries meaning — a flag, a gesture, the color red at a wedding in one culture and at a funeral in another. Meaning is <strong>assigned</strong>, not natural.</p>
+      </div>
+      <div class="cell c-language sticker rv d2" style="border:0">
+        <span class="num">ELEMENT 02</span>
+        <h3>Language</h3>
+        <p>The system of symbols we use to communicate. The Philippines is home to <strong>180+ living languages</strong> — each one a unique map of a people's world.</p>
+      </div>
+      <div class="cell c-norms sticker rv d1" style="border:0">
+        <span class="num">ELEMENT 03</span>
+        <h3>Norms</h3>
+        <p>Rules of behavior. <strong>Folkways</strong> (everyday customs), <strong>mores</strong> (moral rules), and <strong>laws</strong> (formal rules).</p>
+      </div>
+      <div class="cell c-values rv d2">
+        <span class="num">ELEMENT 04</span>
+        <h3>Values</h3>
+        <p>What a group considers good, right, and worth striving for — like <em>kapwa</em> (shared identity) in Filipino culture.</p>
+      </div>
+      <div class="cell c-artifacts sticker rv d3" style="border:0">
+        <span class="num">ELEMENT 05</span>
+        <h3>Artifacts</h3>
+        <p>The objects of material culture — from ancient pottery to your smartphone.</p>
+      </div>
+      <div class="cell c-beliefs sticker rv d2" style="border:0">
+        <span class="num" style="border-color:var(--mustard);color:var(--mustard)">ELEMENT 06</span>
+        <h3>Beliefs</h3>
+        <p>What a group holds to be true — religious faith, superstitions, scientific knowledge, and everyday assumptions about how the world works. Beliefs fuel values; values shape norms; norms guide behavior. It all connects.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ETHNOCENTRISM VS RELATIVISM ================= -->
+<section id="lenses" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">03 — Two Lenses</span>
+      <h2>Ethnocentrism <em>vs.</em> Cultural Relativism</h2>
+      <p>This is the heart of the module: two opposite ways of looking at cultures different from your own.</p>
+    </div>
+    <div class="versus">
+      <div class="sticker vs-card bad rv d1">
+        <span class="tag peach">The judging lens</span>
+        <h3>Ethnocentrism</h3>
+        <p>Viewing other cultures through the standards of <strong>your own</strong> — and ranking yours as superior.</p>
+        <ul>
+          <li>"Their food is weird." — judging by your own taste as the default</li>
+          <li>"Why can't they just do it the normal way?" — assuming your way is universal</li>
+          <li>Leads to stereotypes, prejudice, and discrimination</li>
+          <li>Closes the mind: difference = wrong</li>
+        </ul>
+      </div>
+      <div class="vs-badge rv d2" aria-hidden="true"><span>vs</span></div>
+      <div class="sticker vs-card good rv d3">
+        <span class="tag teal">The understanding lens</span>
+        <h3>Cultural Relativism</h3>
+        <p>Understanding a culture <strong>on its own terms</strong> — from the inside, in its own context.</p>
+        <ul>
+          <li>"Why does this practice make sense to them?" — context before conclusion</li>
+          <li>Respects that there are many valid ways of being human</li>
+          <li>Builds empathy, dialogue, and peaceful coexistence</li>
+          <li>Opens the mind: difference = meaning to discover</li>
+        </ul>
+      </div>
+    </div>
+    <div class="balance rv d2">
+      <p>Cultural relativism doesn't mean abandoning your own values or accepting harm — it means <strong>suspending judgment long enough to understand</strong>. Respect first, evaluate with care.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FILIPINO THREADS ================= -->
+<section id="threads" class="threads">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">04 — Close to Home</span>
+      <h2>Threads of <em>Filipino</em> culture</h2>
+      <p>Culture isn't abstract — you live it every day. Here are values many Filipinos grow up with. (Remember: practices vary across our 7,000+ islands and many ethnolinguistic communities — that's diversity, not contradiction.)</p>
+    </div>
+    <div class="thread-grid">
+      <article class="thread rv d1">
+        <span class="word">Value</span>
+        <h3>Bayanihan</h3>
+        <p>Communal unity — neighbors literally carrying a house together, or a community pitching in during a crisis. No one lifts alone.</p>
+      </article>
+      <article class="thread rv d2">
+        <span class="word">Value</span>
+        <h3>Pakikipagkapwa</h3>
+        <p>Treating others as <em>kapwa</em> — fellow human beings who share your identity and dignity. The root of Filipino hospitality.</p>
+      </article>
+      <article class="thread rv d3">
+        <span class="word">Custom</span>
+        <h3>Po, Opo &amp; Mano</h3>
+        <p>Language and gestures of respect for elders — a living example of how respect is encoded in everyday speech and touch.</p>
+      </article>
+      <article class="thread rv d4">
+        <span class="word">Celebration</span>
+        <h3>Fiestas</h3>
+        <p>Town festivals blending faith, gratitude, food, and community — showing how religion, history, and joy weave together.</p>
+      </article>
+      <article class="thread rv d1">
+        <span class="word">Value</span>
+        <h3>Utang na Loob</h3>
+        <p>A debt of gratitude — remembering kindness and honoring reciprocal bonds within families and communities.</p>
+      </article>
+      <article class="thread rv d2">
+        <span class="word">Concept</span>
+        <h3>Hiya &amp; Amor Propio</h3>
+        <p>A sense of shame/propriety and self-respect that guides social behavior and face-saving in interactions.</p>
+      </article>
+      <article class="thread rv d3">
+        <span class="word">Heritage</span>
+        <h3>Indigenous Weaving</h3>
+        <p>Textiles like the T'nalak of the T'boli or Inabel of the Ilocanos — stories, status, and cosmology encoded in thread.</p>
+      </article>
+      <article class="thread rv d4">
+        <span class="word">Language</span>
+        <h3>180+ Languages</h3>
+        <p>From Ilokano to Hiligaynon to Tausug — each language carries a distinct way of seeing the world worth protecting.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY CULTURE MATTERS ================= -->
+<section id="matters" class="matters">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">05 — The Importance</span>
+      <h2>Why culture <em>matters</em></h2>
+      <p>Culture isn't decoration on top of life. It's the operating system underneath it.</p>
+    </div>
+    <div class="matter-list">
+      <div class="matter rv d1">
+        <span class="n">REASON 01</span>
+        <h3>It gives us identity</h3>
+        <p>Culture answers "who am I?" — anchoring us in a community, a history, and a sense of belonging.</p>
+      </div>
+      <div class="matter rv d2">
+        <span class="n">REASON 02</span>
+        <h3>It makes society possible</h3>
+        <p>Shared norms and values let millions of strangers cooperate — from queuing in line to building a nation.</p>
+      </div>
+      <div class="matter rv d3">
+        <span class="n">REASON 03</span>
+        <h3>It carries wisdom forward</h3>
+        <p>Culture is a library of solutions tested across generations — from farming calendars to conflict resolution.</p>
+      </div>
+      <div class="matter rv d4">
+        <span class="n">REASON 04</span>
+        <h3>It fuels creativity &amp; resilience</h3>
+        <p>Diverse cultures mean diverse ideas. Societies with many perspectives adapt and innovate better in crisis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= APPRECIATION VS APPROPRIATION ================= -->
+<section id="respect">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">06 — Respect in Practice</span>
+      <h2>Appreciation <em>vs.</em> appropriation</h2>
+      <p>Loving another culture is wonderful — but how you engage with it matters.</p>
+    </div>
+    <div class="avsa">
+      <div class="sticker panel do rv d1" style="border:0">
+        <span class="tag teal">Appreciation ✓</span>
+        <h3>Engage with respect</h3>
+        <ul>
+          <li>Learn the meaning and history behind a practice</li>
+          <li>Credit and support the community it comes from</li>
+          <li>Buy directly from indigenous artisans and makers</li>
+          <li>Listen when community members share concerns</li>
+          <li>Participate when invited, as a humble guest</li>
+        </ul>
+      </div>
+      <div class="sticker panel dont rv d2" style="border:0">
+        <span class="tag pink">Appropriation ✕</span>
+        <h3>Avoid taking without care</h3>
+        <ul>
+          <li>Wearing sacred or ceremonial items as costumes</li>
+          <li>Profiting from designs without benefit to the community</li>
+          <li>Reducing a culture to stereotypes or "aesthetics"</li>
+          <li>Speaking over members of that culture about their own traditions</li>
+          <li>Treating living traditions as trends to consume</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GLOSSARY ================= -->
+<section id="glossary" class="glossary" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">07 — Key Terms</span>
+      <h2>Tap a card to <em>flip</em> it</h2>
+      <p>Six terms you should be able to define in your sleep after this module.</p>
+    </div>
+    <div class="grid">
+      <button class="flip rv d1" aria-pressed="false">
+        <span class="flip-inner">
+          <span class="face front"><span class="hint">Tap to flip ✦</span><h3>Culture</h3></span>
+          <span class="face back"><span class="hint">Definition</span><p>The total way of life shared by a group — learned, transmitted, and constantly changing. Includes both material and non-material aspects.</p></span>
+        </span>
+      </button>
+      <button class="flip rv d2" aria-pressed="false">
+        <span class="flip-inner">
+          <span class="face front"><span class="hint">Tap to flip ✦</span><h3>Ethnocentrism</h3></span>
+          <span class="face back"><span class="hint">Definition</span><p>Judging other cultures by the standards of your own and viewing your own culture as superior. A barrier to understanding.</p></span>
+        </span>
+      </button>
+      <button class="flip rv d3" aria-pressed="false">
+        <span class="flip-inner">
+          <span class="face front"><span class="hint">Tap to flip ✦</span><h3>Cultural Relativism</h3></span>
+          <span class="face back"><span class="hint">Definition</span><p>Understanding a culture's beliefs and practices within their own context, rather than judging by outside standards.</p></span>
+        </span>
+      </button>
+      <button class="flip rv d1" aria-pressed="false">
+        <span class="flip-inner">
+          <span class="face front"><span class="hint">Tap to flip ✦</span><h3>Norms</h3></span>
+          <span class="face back"><span class="hint">Definition</span><p>Shared rules of behavior: folkways (casual customs), mores (moral essentials), and laws (formalized rules with sanctions).</p></span>
+        </span>
+      </button>
+      <button class="flip rv d2" aria-pressed="false">
+        <span class="flip-inner">
+          <span class="face front"><span class="hint">Tap to flip ✦</span><h3>Enculturation</h3></span>
+          <span class="face back"><span class="hint">Definition</span><p>The process of learning your own culture from birth — through family, school, media, and community. Nobody is born with culture; we absorb it.</p></span>
+        </span>
+      </button>
+      <button class="flip rv d3" aria-pressed="false">
+        <span class="flip-inner">
+          <span class="face front"><span class="hint">Tap to flip ✦</span><h3>Subculture</h3></span>
+          <span class="face back"><span class="hint">Definition</span><p>A group within a larger culture with its own distinct norms and styles — fandoms, skaters, religious communities — coexisting with the mainstream.</p></span>
+        </span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-title">See the world through many eyes.</div>
+  <p>Module I complete. Next up: how power works in society — and why it belongs to you.</p>
+  <div class="links">
+    <a href="module-2-politics.html">Next: Module II · Politics →</a>
+    <a href="module-3-digital-literacy.html">Module III · Digital Literacy</a>
+    <a href="#top">Back to top ↑</a>
+  </div>
+  <div class="tiny">UCSP LEARNING MODULE · CULTURE · MADE WITH RESPECT FOR EVERY CULTURE</div>
+</footer>
+
+<script>
+/* duplicate marquee for seamless loop */
+(function(){
+  var t=document.getElementById('marqueeTrack');
+  t.innerHTML+=t.innerHTML;
+})();
+
+/* scroll reveal */
+(function(){
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}});
+  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(e){io.observe(e)});
+})();
+
+/* hero mouse parallax */
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var hero=document.querySelector('.hero');
+  var layers=document.querySelectorAll('.floaty');
+  var rx=0,ry=0,cx=0,cy=0;
+  hero.addEventListener('mousemove',function(e){
+    var r=hero.getBoundingClientRect();
+    rx=(e.clientX-r.left)/r.width-.5;
+    ry=(e.clientY-r.top)/r.height-.5;
+  });
+  (function tick(){
+    cx+=(rx-cx)*.06;cy+=(ry-cy)*.06;
+    layers.forEach(function(l){
+      var d=parseFloat(l.dataset.depth||20);
+      l.style.transform='translate3d('+(cx*d)+'px,'+(cy*d)+'px,0)';
+    });
+    requestAnimationFrame(tick);
+  })();
+})();
+
+/* flip cards */
+document.querySelectorAll('.flip').forEach(function(f){
+  f.addEventListener('click',function(){
+    f.setAttribute('aria-pressed',f.getAttribute('aria-pressed')==='true'?'false':'true');
+  });
+});
+</script>
+</body>
+</html>
